@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -17,17 +16,17 @@ class ItemSeeder extends Seeder
             [
                 'name' => 'カット',
                 'memo' => 'カットの詳細',
-                'price' => 6000
+                'price' => 6000,
             ],
             [
                 'name' => 'カラー',
                 'memo' => 'カラーの詳細',
-                'price' => 8000
+                'price' => 8000,
             ],
             [
                 'name' => 'パーマ（カット込み）',
                 'memo' => 'パーマの詳細',
-                'price' => 13000
+                'price' => 13000,
             ],
         ]);
     }
