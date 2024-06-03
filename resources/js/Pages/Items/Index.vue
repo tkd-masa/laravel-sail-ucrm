@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link } from "@inertiajs/vue3";
-interface ItemsModel {
+import FlashMessage from "@/Components/FlashMessage.vue";
+
+interface Item {
   id: number;
   name: string;
   price: number;
   is_selling: boolean;
 }
 interface Props {
-  items: Array<ItemsModel>;
+  items: Array<Item>;
 }
 
 defineProps<Props>();
@@ -27,6 +29,7 @@ defineProps<Props>();
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
           <section class="text-gray-600 body-font">
             <div class="container px-5 py-8 mx-auto">
+              <FlashMessage />
               <div class="flex flex-col text-center w-full mb-20">
                 <div class="flex pl-4 my-4 lg:w-2/3 w-full mx-auto">
                   <Link
@@ -66,7 +69,11 @@ defineProps<Props>();
                     <tbody>
                       <tr v-for="item in items" :key="item.id">
                         <td class="px-4 py-3 border-b-2 border-gray-200">
-                          {{ item.id }}
+                          <Link
+                            class="text-blue-400"
+                            :href="route('items.show', { item: item.id })"
+                            >{{ item.id }}</Link
+                          >
                         </td>
                         <td class="px-4 py-3 border-b-2 border-gray-200">
                           {{ item.name }}

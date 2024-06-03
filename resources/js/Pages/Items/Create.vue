@@ -3,7 +3,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, router } from "@inertiajs/vue3";
 import { reactive } from "vue";
 import InputError from "@/Components/InputError.vue";
-interface ItemModel {
+interface Item {
   name?: string | null;
   memo: string | null;
   price: number | null;
@@ -21,7 +21,7 @@ interface Props {
 
 defineProps<Props>();
 
-const form = reactive<ItemModel>({
+const form = reactive<Item>({
   name: null,
   memo: null,
   price: null,

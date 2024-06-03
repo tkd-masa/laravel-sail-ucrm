@@ -40,7 +40,10 @@ class ItemController extends Controller
             'price' => $request->price,
         ]);
 
-        return to_route('items.index');
+        return to_route('items.index')->with([
+            'message' => '登録しました。',
+            'status' => 'success',
+        ]);
     }
 
     /**
@@ -48,7 +51,9 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        //
+        return Inertia::render('Items/Show', [
+            'item' => $item,
+        ]);
     }
 
     /**
