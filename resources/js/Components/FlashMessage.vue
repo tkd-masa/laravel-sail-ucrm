@@ -9,4 +9,7 @@ const flash = computed(() => page.props.flash);
   <div v-if="flash.status === 'success'" class="bg-blue-300 text-white p-4">
     {{ flash.message }}
   </div>
+  <div v-if="flash.status === 'danger'" class="bg-red-300 text-white p-4">
+    {{ flash.message }}
+  </div>
 </template>

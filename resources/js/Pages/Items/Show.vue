@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, Link } from "@inertiajs/vue3";
+import { router, Head, Link } from "@inertiajs/vue3";
 import { nl2br } from "@/common";
 
 interface Item {
@@ -16,6 +16,12 @@ interface Props {
 }
 
 defineProps<Props>();
+
+const deleteItem = (id: number) => {
+  router.delete(route("items.destroy", { item: id }), {
+    onBefore: () => confirm("本当に削除しますか？"),
+  });
+};
 </script>
 
 <template>
@@ -84,14 +90,25 @@ defineProps<Props>();
                       </div>
                     </div>
                   </div>
-                  <div class="p-2 w-full">
-                    <Link
-                      as="button"
-                      :href="route('items.edit', { item: item.id })"
-                      class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
-                    >
-                      編集する
-                    </Link>
+
+                  <div class="flex m-auto">
+                    <div class="p-2 w-full">
+                      <Link
+                        as="button"
+                        :href="route('items.edit', { item: item.id })"
+                        class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+                      >
+                        編集する
+                      </Link>
+                    </div>
+                    <div class="p-2 w-full">
+                      <button
+                        @click="deleteItem(item.id)"
+                        class="flex mx-auto text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg"
+                      >
+                        削除する
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
