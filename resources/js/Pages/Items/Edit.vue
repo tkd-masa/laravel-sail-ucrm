@@ -3,13 +3,6 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, router } from "@inertiajs/vue3";
 import { reactive } from "vue";
 import InputError from "@/Components/InputError.vue";
-interface Item {
-  id: number;
-  name: string;
-  memo: string;
-  price: number;
-  is_selling: boolean;
-}
 
 interface Validation {
   name: string;

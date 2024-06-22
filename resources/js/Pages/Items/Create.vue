@@ -3,11 +3,6 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, router } from "@inertiajs/vue3";
 import { reactive } from "vue";
 import InputError from "@/Components/InputError.vue";
-interface Item {
-  name?: string | null;
-  memo: string | null;
-  price: number | null;
-}
 
 interface Validation {
   name: string;
@@ -19,13 +14,15 @@ interface Props {
   errors: Validation;
 }
 
+interface ItemForm {
+  name?: string;
+  memo?: string;
+  price?: number;
+}
+
 defineProps<Props>();
 
-const form = reactive<Item>({
-  name: null,
-  memo: null,
-  price: null,
-});
+const form = reactive<ItemForm>({});
 
 const storeItem = () => {
   router.post("/items", form);
