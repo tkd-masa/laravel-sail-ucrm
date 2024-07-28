@@ -92,9 +92,9 @@ class ItemController extends Controller
         $item->delete();
 
         return to_route('items.index')
-        ->with([
-            'message' => '削除しました。',
-            'status' => 'danger',
-        ]);
+            ->with([
+                'message' => '削除しました。',
+                'status' => 'danger',
+            ]);
     }
 }

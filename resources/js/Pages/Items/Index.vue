@@ -3,12 +3,6 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link } from "@inertiajs/vue3";
 import FlashMessage from "@/Components/FlashMessage.vue";
 
-interface Item {
-  id: number;
-  name: string;
-  price: number;
-  is_selling: boolean;
-}
 interface Props {
   items: Array<Item>;
 }
