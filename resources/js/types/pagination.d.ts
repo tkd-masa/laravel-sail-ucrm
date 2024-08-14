@@ -3,10 +3,10 @@ interface Link {
     label: string;
     url: string;
 }
-  
-interface Pagination {
+
+interface Pagination<Model> {
     current_pate: number;
-    data: Array<Customer>;
+    data: Array<Model>;
     first_page_url: string;
     from: number;
     last_page: number;
