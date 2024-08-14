@@ -18,3 +18,13 @@ interface Customer {
     gender: number | null;
     memo: string | null;
 }
+
+interface Order {
+    id: number;
+    total: number;
+    customer_id: number;
+    customer_name: string;
+    status: boolean;
+    created_at: Date;
+    updated_at: Date;
+}
