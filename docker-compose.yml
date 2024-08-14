@@ -34,8 +34,8 @@ services:
         environment:
             MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
             MYSQL_ROOT_HOST: '%'
-            MYSQL_DATABASE: '${DB_DATABASE}'
-            MYSQL_USER: '${DB_USERNAME}'
+            MYSQL_DATABASE: '{DB_DATABASE}'
+            MYSQL_USER: 'masa'
             MYSQL_PASSWORD: '${DB_PASSWORD}'
             MYSQL_ALLOW_EMPTY_PASSWORD: 1
         volumes:
@@ -66,6 +66,18 @@ services:
                 - ping
             retries: 3
             timeout: 5s
+    phpmyadmin:
+        image: phpmyadmin
+        depends_on:
+        - mysql
+        environment:
+            PMA_USER: '${DB_USERNAME}'
+            PMA_PASSWORD: '${DB_PASSWORD}'
+            PMA_HOST: mysql
+        networks:
+            - sail
+        ports:
+        - "3001:80"
     meilisearch:
         image: 'getmeili/meilisearch:latest'
         ports:

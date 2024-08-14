@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\Customer;
+use App\Models\Item;
+use App\Models\Purchase;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,11 +15,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $this->call([
+            ItemSeeder::class,
+            UserSeeder::class,
         ]);
+
+        Customer::factory(1000)->create();
+        Purchase::factory(100)->create();
+
+        $items = Item::all();
+        Purchase::factory(1000)->create()->each(function (Purchase $purchase) use ($items) {
+            // attachをつけると中間テーブルに情報を追加できる
+            $purchase->items()->attach(
+                $items->random(rand(1, 3))->pluck('id')->toArray(),
+                ['quantity' => rand(1, 5)]
+            );
+        });
     }
 }
